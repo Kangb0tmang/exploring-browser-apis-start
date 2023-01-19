@@ -17,3 +17,24 @@ share_button.addEventListener("click", async () => {
   };
   await navigator.share(shareData);
 });
+
+let isMobileAgent;
+
+if (
+  /Android|webOS|iPhone|iPad|Opera Mini|BlackBerry/i.test(navigator.userAgent)
+) {
+  isMobileAgent = true;
+} else {
+  isMobileAgent = false;
+}
+
+share_button.innerText = isMobileAgent;
+
+// Check screen size
+const isMobileSize = window.matchMedia(
+  "only screen and (max-width: 760px)"
+).matches;
+
+// Check for touch events
+const isTouch = "ontouchstart" in document.document.element;
+share_button.innerText = isTouch;
